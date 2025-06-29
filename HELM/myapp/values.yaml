@@ -1,0 +1,33 @@
+replicaCount: 1
+
+image:
+  repository: vaibhs123/my-react-app  # Replace with your image name
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 3001
+  nodePort: 32009  
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: your-frontend.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+serviceAccount:
+  create: false
+  automount: false
+  annotations: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+
